@@ -1,0 +1,65 @@
+{% extends 'game/base.html' %}
+
+{% load static %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block container %}
+
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+            <div class="border-bottom">
+                Lista de Marca
+                <a href="{% url 'cadastrar-plataforma' %}" class="float-right btn btn-primary btn-sm">Nova Plataforma</a>
+            </div>
+        </div>
+    </div>
+    <div class=""row>
+        <div class="col-lg">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                        <th>Descrição</th>
+                    </tr>   
+                </thead>
+
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <td>{{ obj.nome }}</td>
+                        <td>{{ obj.marca }}</td>
+                        <td>{{ obj.descricao }}</td>
+                        <td>
+                            <a href="{% url 'editar-plataforma' obj.pk %}" class="btn btn-warning btn-sm">
+                               <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td>
+                        <a href="{% url 'detalhar-plataforma' obj.pk %}" class="btn btn-primary btn-sm">
+                            <i class=" fa-file-text-o" aria-hidden="true"></i>
+                         </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'excluir-plataforma' obj.pk %}" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3">Nenhuma Plataforma encontrado </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

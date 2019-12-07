@@ -1,0 +1,31 @@
+{% extends 'game/base.html' %}
+{% load static %}
+<!-- CARREGA O PLUGIN INSTALADO-->
+{% load crispy_forms_tags %}
+
+{% block container %}
+<div class="">
+    <div class="row mt-5">
+        <div class="col-lg" >
+            <h3>{{ titulo }}</h3>
+
+            {% if botao == 'Excluir' %}
+            <h4>{{ object }}</h4>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-5">
+            <form method="post">
+                <!-- TODO FORMULARIO EM DJANGLO PRECISA DISSO-->
+                {% csrf_token %}
+                <!-- GERA O FORMULARIO -->
+                {{ form|crispy }}
+
+                <button type="submit" class="btn btn-primary">{{ botao }}</button>
+                <a href="{% url 'index' %}" class="btn btn-primary">Voltar</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

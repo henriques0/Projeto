@@ -1,0 +1,32 @@
+{% extends 'game/base.html' %}
+
+{% load static %}
+<!-- CARREGA O PLUGIN INSTALADO-->
+{% load crispy_forms_tags %}
+
+{% block container %}
+
+<div class="container py-5">
+
+    <div class="row mt-5">
+        <div class="col-lg">
+            <h3>{{ titulo }}</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <form method="post">
+                <!-- Todo formulário tem que ter essa validação -->
+                {% csrf_token %}  {% csrf_protect %}
+                <!-- Gera o formulário -->
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">
+                    Entrar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
